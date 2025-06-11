@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import LogoTitle from "@/components/logo-title";
+import React, { Suspense, useState } from "react";
+import LogoTitle from "@/components/logo-title-wrapper";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import LogoDescription from "@/components/logo-description";
@@ -18,9 +18,11 @@ function CreateLogo() {
   return (
     <div className="my-20 p-10 border border-primary rounded-xl 2xl:mx-72">
       {step === 1 ? (
-        <LogoTitle
-          onHandleInputChange={(v) => onHandleInputChange("title", v)}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LogoTitle
+            onHandleInputChange={(v) => onHandleInputChange("title", v)}
+          />
+        </Suspense>
       ) : step === 2 ? (
         <LogoDescription
           onHandleInputChange={(v) => onHandleInputChange("description", v)}
