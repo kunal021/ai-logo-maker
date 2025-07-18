@@ -1,20 +1,53 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useRef, useEffect } from "react";
 import HeadingDescription from "./heading-description";
 import { lookup } from "@/data/lookup";
 import { colors } from "@/data/colors";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+interface LogoColorPalleteProps {
+  value: string;
+  onHandleInputChange: (value: string) => void;
+}
 
 function LogoColorPallete({
+  value,
   onHandleInputChange,
-}: {
-  onHandleInputChange: (value: string) => void;
-}) {
-  const [showAll, setShowAll] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+}: LogoColorPalleteProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const paletteRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const initialCount = 6;
-  const palettesToShow = showAll ? colors : colors.slice(0, initialCount);
+  // Manual scroll with arrows
+  const scroll = (direction: "left" | "right") => {
+    if (containerRef.current) {
+      const scrollAmount = 300;
+      containerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Auto-scroll to selected palette
+  useEffect(() => {
+    const selectedRef = paletteRefs.current[value];
+    const container = containerRef.current;
+
+    if (selectedRef && container) {
+      const scrollLeft =
+        selectedRef.offsetLeft -
+        container.offsetLeft -
+        container.clientWidth / 2 +
+        selectedRef.clientWidth / 2;
+
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: "smooth",
+      });
+    }
+  }, [value]);
 
   return (
     <div className="my-10">
@@ -23,59 +56,68 @@ function LogoColorPallete({
         description={lookup?.logoColorPaletteDesc}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-        <AnimatePresence>
-          {palettesToShow.map((palette) => {
-            const isSelected = selectedOption === palette.name;
+      <div className="relative mt-6">
+        {/* Left Arrow */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-900 shadow-md p-2 rounded-full"
+        >
+          <ChevronLeft />
+        </button>
 
-            return (
-              <motion.div
-                key={palette.name}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                onClick={() => {
-                  setSelectedOption(palette.name);
-                  onHandleInputChange(palette.name);
-                }}
-                className={`rounded-lg overflow-hidden shadow border cursor-pointer ${
-                  isSelected
-                    ? "ring-2 ring-primary border-primary"
-                    : "border-gray-200 dark:border-gray-700"
-                }`}
-              >
-                <div className="px-4 py-1 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-                  {palette.name}
-                </div>
-                <div className="flex h-14">
-                  {palette.colors.map((color, idx) => (
-                    <div
-                      key={idx}
-                      className="flex-1"
-                      style={{ backgroundColor: color }}
-                      title={color}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </div>
+        {/* Scrollable Container */}
+        <div
+          ref={containerRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar px-10"
+        >
+          <AnimatePresence>
+            {colors.map((palette) => {
+              const isSelected = value === palette.name;
 
-      {colors.length > initialCount && (
-        <div className="flex justify-center mt-8">
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            whileHover={{ scale: 1.03 }}
-            onClick={() => setShowAll((prev) => !prev)}
-            className="text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/80 transition"
-          >
-            {showAll ? "Show Less" : "Show More"}
-          </motion.button>
+              return (
+                <motion.div
+                  key={palette.name}
+                  ref={(el) => {
+                    paletteRefs.current[palette.name] = el;
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  onClick={() => onHandleInputChange(palette.name)}
+                  className={`min-w-[200px] rounded-lg overflow-hidden shadow border cursor-pointer ${
+                    isSelected
+                      ? "border-primary border-2"
+                      : "border-gray-200 dark:border-gray-700"
+                  }`}
+                >
+                  <div className="px-4 py-1 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                    {palette.name}
+                  </div>
+                  <div className="flex h-14">
+                    {palette.colors.map((color, idx) => (
+                      <div
+                        key={idx}
+                        className="flex-1"
+                        style={{ backgroundColor: color }}
+                        title={color}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
-      )}
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-900 shadow-md p-2 rounded-full"
+        >
+          <ChevronRight />
+        </button>
+      </div>
     </div>
   );
 }

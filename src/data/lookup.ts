@@ -19,4 +19,37 @@ export const lookup = {
   logoColorPaletteTitle: "Select Your Logo Color Palette",
   logoColorPaletteDesc:
     "Choose A Color Palette That Enhances Your Logo And Aligns With Your Brand Identity",
+  LogoPricingModelTitle: "Select your AI Model Plan",
+  LogoPricingModelDesc: "Generate Unlimted Fast Logo with your fav model",
+  LoadingWaitDesc:
+    "✨ Please wait a moment while we work our magic to bring your logo to life.",
+  LoadingWaitTitle: "Your logo is being created",
+  pricingOption: [
+    {
+      title: "Free Plan",
+      icon: "<IconFree />",
+      highlights: "For casual users and exploration",
+      features: [
+        "Unlimited logo generation",
+        "Standard queue (30s–3 min wait time)",
+        "Essential design styles",
+        "Basic rendering quality",
+        "No cost, no commitment",
+      ],
+      button: "Start for Free",
+    },
+    {
+      title: "Premium Plan",
+      icon: "<IconPremium />",
+      highlights: "Best for professionals and businesses",
+      features: [
+        "Unlimited high-speed generation",
+        "Priority processing (<10s)",
+        "Access to premium design styles",
+        "Enhanced resolution & branding quality",
+        "Costs only 5 credits per use",
+      ],
+      button: "Unlock Premium",
+    },
+  ],
 };

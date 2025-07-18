@@ -3,6 +3,8 @@ import { Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import Provider from "./provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import LoadingOverlay from "@/components/loading-overlay";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const hostGrotesk = Host_Grotesk({
   subsets: ["latin"],
@@ -19,17 +21,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={hostGrotesk.className}>
-        <ThemeProvider
-          attribute={"class"}
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Provider>{children}</Provider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={hostGrotesk.className}>
+          <LoadingOverlay />
+          <ThemeProvider
+            attribute={"class"}
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Provider>{children}</Provider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

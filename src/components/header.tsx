@@ -5,8 +5,11 @@ import { ThemeSwitch } from "./theme-switch";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -72,40 +75,45 @@ function Header() {
             {/* Navigation Actions */}
             <div className="flex items-center gap-3 sm:gap-4">
               {/* Get Started Button */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button className="cursor-pointer h-9 sm:h-10 px-4 sm:px-6 text-sm sm:text-base font-semibold rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 dark:from-orange-600 dark:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-white">
-                  <motion.span
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                    className="flex items-center gap-2"
+              {pathname === "/" && (
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button
+                    onClick={() => router.push("/create")}
+                    className="cursor-pointer h-9 sm:h-10 px-4 sm:px-6 text-sm sm:text-base font-semibold rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 dark:from-orange-600 dark:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-white"
                   >
-                    Get Started
-                    <motion.svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="hidden sm:block"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 2 }}
-                      transition={{ duration: 0.2 }}
+                    <motion.span
+                      initial={{ scale: 1 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                      className="flex items-center gap-2"
                     >
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </motion.svg>
-                  </motion.span>
-                </Button>
-              </motion.div>
+                      Get Started
+                      <motion.svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="hidden sm:block"
+                        initial={{ x: 0 }}
+                        whileHover={{ x: 2 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </motion.svg>
+                    </motion.span>
+                  </Button>
+                </motion.div>
+              )}
 
               {/* Theme Switch */}
               <motion.div

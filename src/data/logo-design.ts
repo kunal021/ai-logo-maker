@@ -1,58 +1,116 @@
 export const logoDesigns = [
   {
-    //chatGpt
-    title: "Cartoon Logo",
-    image: "/design_1.png",
+    title: "Cartoon Style",
+    icon: "🎨",
     prompt:
-      "Create a set of vibrant, playful logo designs featuring cartoon-style characters with puns or witty text. Each logo should include a cute anthropomorphic object, animal, or food item with expressive features like sunglasses, hats, or smiles, combined with a short, pun-based slogan. Use bold colors, clean lines, and retro aesthetics, ensuring the design is eye-catching and cheerful. Place each logo against a dark background to make the colors pop",
+      "Playful and fun logos with hand-drawn cartoon characters and bold outlines. Ideal for kids’ brands, food startups, or creative apps.",
   },
   {
-    //chatGpt
-    title: "App Logo",
-    image: "/design_2.png",
+    title: "App Icon Minimal",
+    icon: "📱",
     prompt:
-      "Create a vibrant and playful 3D logo for an app. The design should feature bold, colorful text with a glossy finish. Include an icon relevant to the apps theme above the text and a background that complements the concept, such as a bright outdoor scene with natural elements like green grass, a blue sky, and fluffy white clouds. Use a rounded square frame with a yellow border and subtle shadows for a polished and inviting look",
+      "Modern flat-style logos with clean lines and bright colors, perfect for mobile and web apps needing recognizable icons.",
   },
   {
-    //chatGpt
-    title: "Modern Mascot Logos",
-    image: "/design_3.png",
+    title: "Mascot & Character",
+    icon: "🤖",
     prompt:
-      "A vibrant logo featuring a friendly, animated character with a playful expression. The character is dressed in a classic uniform, complete with a distinctive accessory that adds personality. In one hand, they hold a signature item that represents the brand, while the other elements of the design—such as small decorative touches or natural accents—enhance the overall look. The background consists of a bold, circular design with subtle accents to highlight the character. Below, the brand name is displayed in bold, stylized lettering, with a slight curve and complementary decorative lines. The overall style is fun, welcoming, and full of character.",
+      "Brand-friendly mascots and custom characters in vibrant illustrations. Great for gaming, streaming, or entertainment brands.",
   },
   {
-    //Gemini
-    title: "Black And White Line Logos",
-    image: "/design_4.png",
+    title: "Line Art & Mono",
+    icon: "📐",
     prompt:
-      "Create a minimalist and modern logo design that is clean, simple, and visually appealing. The logo should be easy to recognize and remember, and it should be versatile enough to be used in a variety of contexts. Use a combination of typography and simple geometric shapes to create a visually striking and memorable design. The logo should be timeless and elegant, and it should convey a sense of professionalism and sophistication.",
+      "Black and white, minimal line-based logos that focus on shape and geometry. Sleek, timeless, and highly adaptable.",
   },
   {
-    title: "Minimalists And Elegants Logos",
-    image: "/design_5.png",
+    title: "Luxury & Elegant",
+    icon: "👑",
     prompt:
-      "Create a sophisticated and elegant logo design that is inspired by nature and vintage aesthetics. The logo should incorporate elements of symbolism, intricate details, and a touch of mystery. Use a combination of typography, line art, and subtle color palettes to create a timeless and visually striking design. The logo should convey a sense of luxury, tradition, and quality.",
+      "High-end logo designs using gold, serif fonts, and classic motifs. Perfect for luxury fashion, beauty, or law firms.",
   },
   {
-    title: "Vintage Custom Logos",
-    image: "/design_6.png",
+    title: "Retro Vintage",
+    icon: "🎞️",
     prompt:
-      "Generate a vintage, hand-drawn logo in a circular format. The logo should feature a central illustration, such as a symbol, icon, or image related to the brands identity. The illustration should be detailed and stylized, with a focus on linework and shading. The logo should also include the brand name, written in a vintage, decorative font. The overall aesthetic should be retro and nostalgic, evoking a sense of tradition and quality.",
+      "Old-school badges and emblems with textured fonts and hand-drawn elements. Great for barbershops, cafés, and crafts.",
   },
   {
-    title: "Modern Sharp Lined Logos",
-    image: "/design_7.png",
-    prompt: `Design a creative and artistic logo with a retro-modern vibe that showcases the brand's identity. Use bold outlines, intricate patterns, and vibrant, contrasting colors to make the design pop. Incorporate thematic elements like food, nature, technology, or lifestyle symbols depending on the brand's niche. The typography should be playful yet clear, complementing the overall composition with a dynamic and balanced layout. Ensure the logo feels unique, versatile, and eye-catching`,
-  },
-  {
-    title: "Custom Luxury Logo Designs",
-    image: "/design_8.png",
-    prompt: `Create a set of luxurious, elegant, and professional logos with a gold metallic finish on a dark background. Include a variety of themes, such as animals, letters, symbols, and nature-inspired designs. Each logo should convey sophistication, premium quality, and modern aesthetics, suitable for any brand or industry.`,
-  },
-  {
-    title: "Vintage Logo Designs With Text & Icon",
-    image: "/design_9.png",
+    title: "Sharp & Modern",
+    icon: "⚡",
     prompt:
-      "Design a collection of vintage-inspired logos with a hand-drawn, artistic style. Incorporate a variety of themes, including food, animals, characters, and unique brand elements. Each logo should feature bold typography, intricate details, and a retro aesthetic that is versatile and suitable for diverse brands or businesses.",
+      "Edgy designs with bold angles, contrast, and futuristic aesthetics. Suited for tech startups or cutting-edge products.",
+  },
+  {
+    title: "Custom Typography",
+    icon: "✍️",
+    prompt:
+      "Logos that are purely typographic but uniquely styled — custom lettering, ligatures, and expressive flourishes.",
+  },
+  {
+    title: "Nature Inspired",
+    icon: "🌿",
+    prompt:
+      "Soft, organic logos that use natural shapes, florals, and earth tones — ideal for wellness, skincare, or eco-friendly brands.",
+  },
+  {
+    title: "Futuristic & Tech",
+    icon: "🛸",
+    prompt:
+      "Logos with glowing edges, cyber aesthetics, and digital motifs. Designed for AI, blockchain, or high-tech innovations.",
+  },
+  {
+    title: "Geometric Logos",
+    icon: "📏",
+    prompt:
+      "Clean and precise logos built from geometric shapes like circles, hexagons, or triangles. Great for architecture and modern brands.",
+  },
+  {
+    title: "Handwritten Script",
+    icon: "🖋️",
+    prompt:
+      "Elegant script-style logos with a personal touch — ideal for boutiques, photographers, or lifestyle influencers.",
+  },
+  {
+    title: "Gradient Style",
+    icon: "🌈",
+    prompt:
+      "Dynamic logos using multi-color gradients and fluid transitions. Excellent for tech, apps, or modern digital brands.",
+  },
+  {
+    title: "Badge / Emblem",
+    icon: "🏷️",
+    prompt:
+      "Circular or shield-style logos with classic framing. Great for coffee shops, clothing, or artisanal brands.",
+  },
+  {
+    title: "Monogram & Initials",
+    icon: "🔠",
+    prompt:
+      "Stylish letter-based logos focusing on initials, often used in fashion, law firms, or premium personal branding.",
+  },
+  {
+    title: "3D/Isometric Logos",
+    icon: "🧊",
+    prompt:
+      "Three-dimensional and isometric style logos that add depth and structure. Ideal for modern SaaS or gaming companies.",
+  },
+  {
+    title: "Abstract Symbols",
+    icon: "🎯",
+    prompt:
+      "Non-literal, creative abstract icons that emphasize mood, motion, and values. Perfect for startups and branding agencies.",
+  },
+  {
+    title: "Watercolor & Brush",
+    icon: "🖌️",
+    prompt:
+      "Artistic, soft-textured logos using brush strokes and watercolor washes. Works well for art studios or personal brands.",
+  },
+  {
+    title: "Cyberpunk & Neon",
+    icon: "🌌",
+    prompt:
+      "Bold, neon-lit logos with futuristic typography and digital glitch effects. Ideal for gaming or futuristic entertainment brands.",
   },
 ];
