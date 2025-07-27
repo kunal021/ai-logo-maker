@@ -10,7 +10,8 @@ import LogoDesigns from "@/components/logo-designs";
 import LogoIdeas from "@/components/logo-idea";
 import PricingOptions from "./pricing-option";
 
-function CreateLogo() {
+// Separate the component that uses useSearchParams
+function CreateLogoContent() {
   const { currentQuery: stepStr, setQuery: setStepQuery } = usePageQuery(
     "step",
     "1"
@@ -80,9 +81,7 @@ function CreateLogo() {
 
   return (
     <div className="my-20 p-10 border border-primary rounded-xl 2xl:mx-72">
-      <Suspense fallback={<div>Loading...</div>}>
-        {renderStepContent()}
-      </Suspense>
+      {renderStepContent()}
 
       <div className="flex items-center justify-between mt-10">
         {step > 1 && (
@@ -114,6 +113,14 @@ function CreateLogo() {
         )}
       </div>
     </div>
+  );
+}
+
+function CreateLogo() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CreateLogoContent />
+    </Suspense>
   );
 }
 
